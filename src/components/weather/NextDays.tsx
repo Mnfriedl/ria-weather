@@ -4,7 +4,7 @@ import Card from "../Card";
 export default function NextDays() {
   return (
     <Card>
-      Hola desde el NextDays
+      Hello from NextDays
     </Card>
   )
 }

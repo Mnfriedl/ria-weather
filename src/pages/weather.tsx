@@ -3,11 +3,12 @@ import React from "react";
 import clsx from "clsx";
 import { useQuery } from "react-query";
 
-import { getCurrentWeather, getFiveDaysForecast } from "@/api/weather";
+import { getFiveDaysForecast } from "@/api/weather";
 import type { City } from "@/types/cities";
 import NextHours from "@/components/weather/NextHours";
 import NextDays from "@/components/weather/NextDays";
 import Card from "@/components/Card";
+import { ForecastDataPoint } from "@/types/weatherApi";
 
 type WeatherPageProps = {
   containerClassName?: string;
@@ -16,31 +17,14 @@ type WeatherPageProps = {
 
 export default function WeatherPage({ city, containerClassName }: WeatherPageProps) {
   const {
-    data: currentWeatherData,
-    isFetching: isLoadingCurrent,
-    refetch: refetchCurrentWeather
-  } = useQuery({
-    queryKey: ["getCurrentWeather", city.name],
-    queryFn: async () => await getCurrentWeather({ lat: city.lat, lon: city.lon, units: "metric" }),
-    staleTime: 300000 // 5 minutes
-  })
-
-  const {
-    data: forecastData,
-    isFetching: isLoadingForecast,
-    refetch: refetchForecast
+    data,
+    isFetching,
+    refetch
   } = useQuery({
     queryKey: ["getFiveDaysForecast", city.name],
     queryFn: async () => await getFiveDaysForecast({ lat: city.lat, lon: city.lon, units: "metric" }),
     staleTime: 300000 // 5 minutes
   })
-
-  const refetch = () => {
-    refetchCurrentWeather();
-    refetchForecast();
-  }
-
-  console.log({currentWeatherData, forecastData})
 
   return (
     <div className={clsx(
@@ -52,16 +36,17 @@ export default function WeatherPage({ city, containerClassName }: WeatherPagePro
         {/* Make this look like a button with a reload icon */}
         <div onClick={() => refetch()}>Reload</div>
       </div>
-      {isLoadingCurrent && (
+      {isFetching && (
         <Card containerClassName="animate-pulse h-48 bg-blue-200" />
       )}
-      {!isLoadingCurrent && (
-        <NextHours />
+      {!isFetching && (
+        // use the next 4 data points for "next hours"
+        <NextHours weatherData={data.list.slice(0, 4) as ForecastDataPoint[]} />
       )}
-      {isLoadingForecast && (
+      {isFetching && (
         <Card containerClassName="animate-pulse h-48 bg-blue-200" />
       )}
-      {!isLoadingForecast && (
+      {!isFetching && (
         <NextDays />
       )}
     </div>

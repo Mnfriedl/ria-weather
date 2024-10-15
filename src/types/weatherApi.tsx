@@ -5,9 +5,18 @@ type CityCoordinates = {
 
 type AcceptedUnits = "metric" | "imperial" | "standard";
 
-export type GetCurrentWeatherParams = CityCoordinates & {
+export type GetFiveDayForecastParams = CityCoordinates & {
   units?: AcceptedUnits;
 }
 
-export type GetFiveDayForecastParams = GetCurrentWeatherParams;
-
+export type ForecastDataPoint = {
+  dt: number;
+  dt_txt: string;
+  main: {
+    temp: number;
+  };
+  weather: Array<{
+    icon: string;
+    id: number;
+  }>;
+}

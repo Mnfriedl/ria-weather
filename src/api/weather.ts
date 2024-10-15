@@ -1,5 +1,5 @@
 
-import api from ".";
+import api from "./index";
 
 import type { GetCurrentWeatherParams, GetFiveDayForecastParams } from "@/types/weatherApi";
 

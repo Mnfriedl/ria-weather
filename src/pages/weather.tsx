@@ -1,5 +1,13 @@
 import React from "react";
 
-export default function WeatherPage() {
-  return <div>Hola desde el weather page</div>
+import type { City } from "@/types/cities";
+
+type WeatherPageProps = {
+  city: City;
+}
+
+export default function WeatherPage({ city }: WeatherPageProps) {
+  return <div>Hola desde el weather page:
+    {city.name}
+  </div>
 }

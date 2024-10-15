@@ -31,6 +31,7 @@ Because of the 2 hour deadline, there were multiple things that were not done, a
 - In the setup, I added the necessary things to use ShadCN's components, but in the end didn't use any of them. I probably shouldn't have made the setup for ShadCN as it added clutter to the app that in the end wasn't used. Despite this, I probably would've used it if I had used more time, as the autocomplete selector was definitely coming from ShadCN.
 - Decided to keep the style relatively similar to the example. This was only to reduce the amount of thinking that had to be dedicated to making a different design.
 - The main content has a max-width just because it was made as mobile-first, and when stretched it didn't look very good, and I didn't have time to make a different design for fullscreen.
+- The time displayed in the next hours section is using the local time. I just realized (this was written after the 2 hours were over) that the time should be displayed in the city's local time, and not the user's local time. This is definintely an error and should be fixed.
 
 ## Deployment
 

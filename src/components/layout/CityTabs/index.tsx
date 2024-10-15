@@ -14,7 +14,7 @@ export default function CityTabs({ selectedCity, setCity }: CityTabsProps) {
   return (
     <div className="flex flex-row divide-x">
       {cities.map((city) => (
-        <CityTab city={city} setCity={setCity} selected={city.name === selectedCity} />
+        <CityTab key={city.name} city={city} setCity={setCity} selected={city.name === selectedCity} />
       ))}
     </div>
   );

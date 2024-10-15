@@ -14,7 +14,7 @@ export default function NextHours({ weatherData }: NextHoursProps) {
       <h2 className="text-xl text-medium">Next hours</h2>
       <div className="flex flex-row overflow-x-auto divide-x gap-2 mt-4">
         {weatherData?.map((dataPoint) => (
-          <HourCard data={dataPoint} />
+          <HourCard key={dataPoint.dt} data={dataPoint} />
         ))}
       </div>
     </Card>

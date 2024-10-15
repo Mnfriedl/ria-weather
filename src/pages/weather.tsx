@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import clsx from "clsx";
 import { useQuery } from "react-query";
@@ -9,6 +9,7 @@ import NextHours from "@/components/weather/NextHours";
 import NextDays from "@/components/weather/NextDays";
 import Card from "@/components/Card";
 import { ForecastDataPoint } from "@/types/weatherApi";
+import { processWeatherData } from "@/utils/weather";
 
 type WeatherPageProps = {
   containerClassName?: string;
@@ -26,6 +27,10 @@ export default function WeatherPage({ city, containerClassName }: WeatherPagePro
     staleTime: 300000 // 5 minutes
   })
 
+  const dailyWeatherData = useMemo(() => {
+    return processWeatherData(data?.list);
+  }, [data])
+
   return (
     <div className={clsx(
       "flex flex-col w-full gap-4",
@@ -40,14 +45,14 @@ export default function WeatherPage({ city, containerClassName }: WeatherPagePro
         <Card containerClassName="animate-pulse h-48 bg-blue-200" />
       )}
       {!isFetching && (
-        // use the next 4 data points for "next hours"
-        <NextHours weatherData={data.list.slice(0, 4) as ForecastDataPoint[]} />
+        // use the next 6 data points for "next hours"
+        <NextHours weatherData={data?.list.slice(0, 6) as ForecastDataPoint[]} />
       )}
       {isFetching && (
         <Card containerClassName="animate-pulse h-48 bg-blue-200" />
       )}
       {!isFetching && (
-        <NextDays />
+        <NextDays data={dailyWeatherData} />
       )}
     </div>
   )

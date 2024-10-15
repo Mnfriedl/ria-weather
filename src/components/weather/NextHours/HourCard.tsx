@@ -13,7 +13,7 @@ export default function HourCard({ data }: HourCardProps) {
     <div className="flex flex-col items-center justify-center px-2">
       <div className="text-lg text-semibold">{Math.round(data.main.temp)}°</div>
       <img src={`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`} />
-      <div className="text-sm text-gray-700">{dayjs(data.dt * 1000).format("HH:mm:ss")}</div>
+      <div className="text-sm text-gray-500">{dayjs(data.dt * 1000).format("HH:mm:ss")}</div>
     </div>
   )
 }

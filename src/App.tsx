@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import CityTabs from "./components/layout/CityTabs";
 import Navbar from "./components/layout/Navbar";
-import WeatherPage from "./pages/Weather";
+import WeatherPage from "./pages/weather";
 import type { City } from "./types/cities";
 import defaultCities from "./consts/cities";
 

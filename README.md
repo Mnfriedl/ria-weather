@@ -23,6 +23,7 @@ Because of the 2 hour deadline, there were multiple things that were not done, a
 - The "Reload" button is not styled in any manner.
 - In the place where it says "Add here the search by city" should ne an autocomplete selector [like this one](https://ui.shadcn.com/docs/components/combobox), which let's you pick the city to look up, and sets the state. The data for the cities would come from the 20k cities json.
 - A routing library could have been used, where each city would have been it's own route. For the scope of this project it was _overkill_ and didn't seem necesary, so I just kept it simple.
+- I used metric as default for measurements, but the api supports both metric and imperial, so it would be nice to add a switch somewhere to change between metric and imperial.
 - There is no error handling. Yet again, because of time constraints, I decided to forgo error handling, and just assumed that the API isn't going to fail. But adding some error handling (which is pretty easy with useQuery) would be ideal.
 
 ## Comments
